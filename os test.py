@@ -13,7 +13,7 @@ main_repo_url = 'https://github.com/Vinci230/exam-_test.git'
 
 # 克隆主仓库到临时目录
 main_repo_path = 'main_repo'
-git_clone_command = ['git', 'clone', main_repo_url, main_repo_path]
+git_clone_command = ['git', 'clone','--recursive', main_repo_url, main_repo_path]
 subprocess.run(git_clone_command)
 
 # 进入主仓库临时目录
@@ -21,13 +21,22 @@ os.chdir(main_repo_path)
 # 获取所有子模块的路径，获取的是主仓库目录中以submoudles开头的所有文件路径，返回一个迭代器
 submodule_paths = [item.path for item in os.scandir() if item.is_dir() and item.name.startswith('submodules/')]
 
+# 更新子模块内容
+git_submodule_update_command = ['git', 'submodule', 'update', '--recursive', '--remote']
+subprocess.run(git_submodule_update_command)
+
 # 遍历每个子模块
 for submodule_path in submodule_paths:
     # 进入子模块目录
     os.chdir(submodule_path)
-    # 拉取子模块最新的变更
-    git_pull_command = ['git', 'pull']
-    subprocess.run(git_pull_command)
+
+    # # 切换到主分支
+    # git_checkout_command = ['git', 'checkout', 'main']  # 你的主分支名称，可能是 main、master 等
+    # subprocess.run(git_checkout_command)
+    #
+    # # 拉取子模块最新的变更
+    # git_pull_command = ['git', 'pull']
+    # subprocess.run(git_pull_command)
 
     # 构建 Git 命令
     git_command = [

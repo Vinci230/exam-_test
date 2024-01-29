@@ -1,0 +1,6 @@
+[submodule "submodules/other_repo"]
+	path = submodules/other_repo
+	url = https://github.com/Vinci230/2024-lanshanexam.git
+[submodule "submodules/other_repo1"]
+	path = submodules/other_repo1
+	url = https://github.com/Vinci230/Vinci.git

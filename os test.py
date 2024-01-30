@@ -34,7 +34,6 @@ for submodule_path in submodule_paths:
         f'--until={current_date}T23:59:59Z',  # 到今天的结束时间获取 commit
         '--pretty=format:"Commit ID: %H%nAuthor: %an <%ae>%nDate: %ad%nMessage: %s%n%n"'
     ]
-
     # 进入子模块目录
     os.chdir(submodule_path)
     # 执行 Git 命令
